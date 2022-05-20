@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{4c621ec8-55eb-4332-a789-3d14e140795a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{f811fac9-fae4-49cb-a9c0-cec754f21249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Lib">
+      <UniqueIdentifier>{255026be-ed58-401f-acd0-7132fa5ac704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Square">
+      <UniqueIdentifier>{d2b0514d-fb47-45d4-b365-45fb9f94e205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Menu">
+      <UniqueIdentifier>{c78ce57c-6a2a-4aba-9058-ef8dad92a565}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="UI\Menu\Menu.h">
+      <Filter>UI\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Square\Square.h">
+      <Filter>Core\Square</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Lib\lib.h">
+      <Filter>Core\Lib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Core\Square\Square.cpp">
+      <Filter>Core\Square</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
