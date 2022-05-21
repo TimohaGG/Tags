@@ -12,13 +12,22 @@ int main() {
 		arrN[i] = new int[size];
 	}
 	randNumber(arrN, ++amountN, size);
-
-
 	square** arrS = new square * [size];
 	for (size_t i = 0; i < size; i++)
 	{
 		arrS[i] = new square[size];
 	}
+//---------------------------------------
+
 	fillSquares(arrS, arrN, size);
+	for (size_t i = 0; i < size; i++)
+	{
+		for (size_t j = 0; j < size; j++)
+		{
+			CreateTile(arrS[i][j]);
+		}
+	}
 	ShowNum(arrS, size);
+
+	
 }
