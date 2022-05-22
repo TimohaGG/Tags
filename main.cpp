@@ -28,6 +28,18 @@ int main() {
 		}
 	}
 	ShowNum(arrS, size);
+	CheckMovable(arrS, size);
 
+	for (size_t i = 0; i < size; i++)
+	{
+		for (size_t j = 0; j < size; j++)
+		{
+			for (size_t k = 0; k < 4; k++)
+			{
+				if (arrS[i][j].MoveSide[k])
+					cout << arrS[i][j].number << " can be moven to the " << k << endl;
+			}
+		}
+	}
 	
 }
