@@ -8,7 +8,7 @@ struct square {
 	int y;
 	bool moovable=false;
 	bool MoveSide[4]{ false,false,false,false };
-	string tile[5][5];
+	string tile[tileSize][tileSize];
 	
 	
 };

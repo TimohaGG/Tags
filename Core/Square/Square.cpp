@@ -12,10 +12,10 @@ square fillSquares(square** arr, int** arrN, int size) {
 	return**arr;
 }
 
-bool noRepeat(int**& arr, int number, int amountN) {
-	for (size_t i = 0; i < amountN; i++)
+bool noRepeat(int**& arr, int number, int size) {
+	for (size_t i = 0; i < size; i++)
 	{
-		for (size_t j = 0; j < amountN; j++)
+		for (size_t j = 0; j < size; j++)
 		{
 			if (arr[i][j] == number)
 				return false;
@@ -27,13 +27,12 @@ bool noRepeat(int**& arr, int number, int amountN) {
 
 
 void randNumber(int**& arrNumbers, int amountN, int size) {
-	//int buf = gamesAvailable;
-	arrNumbers[2][2] = 0;
+	arrNumbers[size-1][size-1] = 0;
 	for (int i = size-1; i >=0; i--)
 	{
 		for (int j = size-1; j>=0; j--)
 		{
-			if (i == 2 && j == 2) {
+			if (i == size-1 && j == size-1) {
 				continue;
 			}
 			else {
@@ -50,10 +49,10 @@ void randNumber(int**& arrNumbers, int amountN, int size) {
 }
 
 
-void ShowTile(string tile[5][5], int& x, int& y) {
-	for (size_t i = 0; i < 5; i++)
+void ShowTile(string tile[tileSize][tileSize], int& x, int& y) {
+	for (size_t i = 0; i < tileSize; i++)
 	{
-		for (size_t j = 0; j < 5; j++)
+		for (size_t j = 0; j < tileSize; j++)
 		{
 			cout << tile[i][j];
 		}
@@ -76,31 +75,36 @@ void ShowNum(square** arr, int size) {
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 			SetConsoleCursorPosition(hConsole, position);
 			ShowTile(arr[i][j].tile, x, y);
-			x += 10;
+			x += tileSize*2;
 			y = yTmp;
 		}
 		x = 0;
-		y += 5;
-		yTmp += 5;
+		y += tileSize;
+		yTmp += tileSize;
 	}
 }
 
 
 
 void CreateTile(square& Tile){
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < tileSize; i++)
 		{
-			for (size_t j = 0; j < 5; j++)
+			for (size_t j = 0; j < tileSize; j++)
 			{
 				if (Tile.number == 0)
 					Tile.tile[i][j] = "  ";
 				else {
-					if (i == 0 || i == 4)
+					if (i == 0 || i == tileSize-1)
 						Tile.tile[i][j] = " *";
-					else if (j == 0 || j == 4)
+					else if (j == 0 || j == tileSize-1)
 						Tile.tile[i][j] = " *";
-					else if (j == 2 && i == 2)
-						Tile.tile[i][j] = " " + to_string(Tile.number);
+					else if (j == (0 + (tileSize - 1)) / 2 && i == (0 + (tileSize - 1)) / 2) {
+						if (Tile.number > 9)
+							Tile.tile[i][j] = to_string(Tile.number);
+						else
+							Tile.tile[i][j] = " " + to_string(Tile.number);
+					}
+						
 					else
 						Tile.tile[i][j] = "  ";
 				}
@@ -121,7 +125,7 @@ void CheckMovable(square**& arr, int size)
 					arr[i][j].MoveSide[bottom] = true;
 				}	
 			}
-			 if (i - 1 >-1) {
+			 if (i - 1 ==0||i-1==1) {
 				 if (arr[i - 1][j].number == 0) {
 					arr[i][j].moovable = true;
 					arr[i][j].MoveSide[up] = true;
@@ -136,7 +140,7 @@ void CheckMovable(square**& arr, int size)
 				}
 					
 			}
-			 if (j - 1 >-1) {
+			 if (j - 1 ==0||j-1==1) {
 				 if (arr[i][j - 1].number == 0) {
 					 arr[i][j].moovable = true;
 					 arr[i][j].MoveSide[left] = true;

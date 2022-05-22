@@ -8,7 +8,9 @@ using std::endl;
 using std::string;
 using std::to_string;
 
-
+#define tileSize 5
+#define PAUSE system("pause")
+#define CLEAR system("cls")
 
 
 
