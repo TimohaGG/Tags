@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include<Windows.h>
+#include<conio.h>
 using std::cin;
 using std::cout;
 using std::endl;
