@@ -119,20 +119,20 @@ void CheckMovable(square**& arr, int size)
 	{
 		for (size_t j = 0; j < size; j++)
 		{
-			if (i + 1 < 3){
+			if (i + 1 < size){
 				if (arr[i + 1][j].number == 0) {
 					arr[i][j].moovable = true;
 					arr[i][j].MoveSide[bottom] = true;
 				}	
 			}
-			 if (i - 1 ==0||i-1==1) {
+			 if (i - 1 !=-1) {
 				 if (arr[i - 1][j].number == 0) {
 					arr[i][j].moovable = true;
 					arr[i][j].MoveSide[up] = true;
 				}
 					
 			}
-			 if (j + 1 < 3) {
+			 if (j + 1 < size) {
 				 if (arr[i][j + 1].number == 0)
 				 {
 					 arr[i][j].moovable = true;
@@ -140,7 +140,7 @@ void CheckMovable(square**& arr, int size)
 				}
 					
 			}
-			 if (j - 1 ==0||j-1==1) {
+			 if (j - 1 !=-1) {
 				 if (arr[i][j - 1].number == 0) {
 					 arr[i][j].moovable = true;
 					 arr[i][j].MoveSide[left] = true;

@@ -123,17 +123,74 @@ square FindIndex(square** arrS, int size, int TileToFind) {
 	}
 }
 
+
+
+square MoveTile(square**& arrS, square Tile, int directionChosen, int size) {
+	int x = Tile.x;
+	int y = Tile.y;
+	switch (directionChosen) {
+	case 72: {
+		arrS[x][y].number = arrS[x-1][y].number;
+		arrS[x-1][y].number = Tile.number;
+		CreateTile(arrS[x][y]);
+		CreateTile(arrS[x - 1][y]);
+	}break;
+	case 77: {
+		
+		arrS[x][y].number = arrS[x][y+1].number;
+		arrS[x][y + 1].number = Tile.number;
+		CreateTile(arrS[x][y]);
+		CreateTile(arrS[x][y+1]);
+		
+	}break;
+	case 80: {
+		arrS[x][y].number = arrS[x + 1][y].number;
+		arrS[x + 1][y].number = Tile.number;
+		CreateTile(arrS[x][y]);
+		CreateTile(arrS[x + 1][y]);
+	}break;
+	case 75: {
+		arrS[x][y].number = arrS[x][y - 1].number;
+		arrS[x][y - 1].number = Tile.number;
+		CreateTile(arrS[x][y]);
+		CreateTile(arrS[x][y-1]);
+		
+	}break;
+	}
+	for (size_t i = 0; i < size; i++)
+	{
+		for (size_t j = 0; j < size; j++)
+		{
+			for (size_t k = 0; k < 4; k++)
+			{
+				arrS[i][j].MoveSide[k] = false;
+				
+			}
+			arrS[i][j].moovable = false;
+		}
+	}
+	return** arrS;
+}
+
 void BeginGame(square** arrS, int size) {
 	square TileToMove;
 	while (!GameOver(arrS,size)) {
 		
+			char tileToMoveChar;
 			int tileToMove;
 			do
 			{
-				cout << "Какую плитку вы хотите двигать?" << endl;
-				cin >> tileToMove;
-			} while (tileToMove<1||tileToMove>size*size-1);
-			int x, y;
+				cout << endl<<"Какую плитку вы хотите двигать?" << endl;
+				if (size == 3) {
+					tileToMoveChar = _getch();
+					tileToMove = tileToMoveChar - '0';
+				}
+				else {
+					cin >> tileToMove;
+				}
+				 
+			} while (tileToMove<1|| tileToMove>size*size-1);
+			
 			square Tile=FindIndex(arrS,size, tileToMove);
 			if (Tile.moovable) {
 				cout << "Управляйте плиткой с помощью стрелочек" << endl;
@@ -182,6 +239,10 @@ void BeginGame(square** arrS, int size) {
 					
 				} while (!tileMoved);
 				
+				MoveTile(arrS, Tile, key, size);
+				CheckMovable(arrS, size);
+				CLEAR;
+				ShowNum(arrS, size);
 			}
 			else {
 				cout << "Эту плитку нельзя двигать!!!"<<endl;
